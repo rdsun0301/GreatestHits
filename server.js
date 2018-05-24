@@ -1,13 +1,13 @@
-const express = require('express');
-const bodyParser = require('body-parser');
-const request = require('request');
+import express, { static } from "express";
+import { urlencoded } from "body-parser";
+import request from "request";
 const app = express()
 
 const apiKey = '839330a97feb4fa9c67886e2f1bd5a6e';
 const port = 3000;
 
-app.use(express.static('public'));
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(static('public'));
+app.use(urlencoded({ extended: true }));
 app.set('view engine', 'ejs')
 
 app.get('/', function (req, res) {
