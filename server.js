@@ -1,17 +1,17 @@
-import express, { static } from "express";
-import { urlencoded } from "body-parser";
-import request from "request";
+const express = require('express');
+const bodyParser = require('body-parser');
+const request = require('request');
 const app = express()
 
 const apiKey = '839330a97feb4fa9c67886e2f1bd5a6e';
 const port = 3000;
 
-app.use(static('public'));
-app.use(urlencoded({ extended: true }));
+app.use(express.static('public'));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.set('view engine', 'ejs')
 
 app.get('/', function (req, res) {
-  res.render('index', {weather: null, error: null});
+  res.render('./index', {weather: null, error: null});
 })
 
 app.post('/', function (req, res) {
