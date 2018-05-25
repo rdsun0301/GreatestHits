@@ -3,21 +3,24 @@ const request = require('request');
 const bodyParser = require('body-parser');
 const app = express()
 
+//Stored values in .env file
+require('dotenv').config();
+const CLIENT_ID = process.env.CLIENT_ID;
+const CLIENT_SECRET = process.env.CLIENT_SECRET;
+
 const port = 3000;
-//From registering Spotify app
-const clientID = '0cc85a786e754b958fa0096973baf894';
-const clientSecret = 'd37be6a43f724ba1ae4b5fc02b8b8ac7';
+
 
 app.use(express.static('public'));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.set('view engine', 'ejs')
 
 app.get('/', function (req, res) {
-	//Uses clientID and clientSecret to get access code
+	//Uses CLIENT_ID and CLIENT_SECRET to get access code
 	var authOptions = {
 		url: 'https://accounts.spotify.com/api/token',
 		headers: {
-		'Authorization': 'Basic ' + (new Buffer(clientID + ':' + clientSecret).toString('base64'))
+		'Authorization': 'Basic ' + (new Buffer(CLIENT_ID + ':' + CLIENT_SECRET).toString('base64'))
 		},
 		form: {
 		grant_type: 'client_credentials'
@@ -27,6 +30,7 @@ app.get('/', function (req, res) {
 	
 	request.post(authOptions, function(error, response, body) {
 		if (!error && response.statusCode === 200) {
+			console.log('Authorized!')
   			var access_token = body.access_token,
 				refresh_token = body.refresh_token;
   
