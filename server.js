@@ -2,7 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const app = express()
 
-const auth = require('./auth');
+const auth = require('./lib/auth');
 
 const port = 3000;
 
@@ -11,11 +11,11 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.set('view engine', 'ejs')
 
 app.get('/', function (req, res) {
-	res.render('./index');
+	res.render('index');
 })
 
 app.post('/', function (req, res) {
-	res.render('./index');
+	res.render('index');
 
 	//Get inputted artist from text field
 	var artist = req.body.artist;
