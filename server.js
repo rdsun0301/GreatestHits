@@ -3,8 +3,6 @@ const request = require('request');
 const bodyParser = require('body-parser');
 const app = express()
 
-const auth = require('./lib/auth');
-
 const port = 3000;
 //From registering Spotify app
 const clientID = '0cc85a786e754b958fa0096973baf894';
@@ -26,9 +24,8 @@ app.get('/', function (req, res) {
 		},
 		json: true
 	};
-	console.log('got this far');
+	
 	request.post(authOptions, function(error, response, body) {
-		console.log(response.statusCode);
 		if (!error && response.statusCode === 200) {
   			var access_token = body.access_token,
 				refresh_token = body.refresh_token;
@@ -38,16 +35,28 @@ app.get('/', function (req, res) {
 				headers: { 'Authorization': 'Bearer ' + access_token },
 				json: true
 			};
-
-			// use the access token to access the Spotify Web API
-			request.get(options, function(error, response, body) {
-				console.log(body);
-			});
 			
 			res.render('index');
 		}
 	})	
 })
+
+app.post('/', function (req, res) {
+	res.render('index');
+
+	//Get inputted artist from text field
+	var artist = req.body.artist;
+	console.log(artist);
+
+	//TODO: make and call a method that converts artist into artistFormatted
+
+	//TODO: call method in auth.js to get info about the artist from Spotify API.
+})
+
+app.listen(port, function () {
+	console.log(`GreatestHits listening on port ${port}`)
+})
+
 
 /* 
     let url = `http://api.openweathermap.org/data/2.5/weather?q=${city}&units=${units}&appid=${apiKey}`
@@ -65,18 +74,3 @@ app.get('/', function (req, res) {
         }
       }
     }); */
-
-/*app.post('/', function (req, res) {
-	res.render('index');
-
-	//Get inputted artist from text field
-	var artist = req.body.artist;
-
-	//TODO: make and call a method that converts artist into artistFormatted
-
-	//TODO: call method in auth.js to get info about the artist from Spotify API.
-})*/
-
-app.listen(port, function () {
-	console.log(`GreatestHits listening on port ${port}`)
-})
