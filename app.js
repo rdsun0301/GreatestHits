@@ -90,21 +90,3 @@ app.post('/', function (req, res) {
 app.listen(port, function () {
 	console.log(`GreatestHits listening on port ${port}`)
 })
-
-
-/* 
-    let url = `http://api.openweathermap.org/data/2.5/weather?q=${city}&units=${units}&appid=${apiKey}`
-
-    request(url, function (req, res) {
-      if(err) {
-        res.render('index', {weather: null, error: 'Error, please try again.'});
-      } else {
-        let weather = JSON.parse(body);
-        if(weather.main == undefined) {
-          res.render('index', {weather: null, error: 'Error, please try again.'});
-        } else {
-          let weatherText = `It's ${weather.main.temp}\xB0${unitsLetter} in ${weather.name}! (${weather.sys.country})`;
-          res.render('index', {weather: weatherText, error: null});
-        }
-      }
-    }); */
