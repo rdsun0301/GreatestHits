@@ -9,6 +9,7 @@ require('dotenv').config();
 const CLIENT_ID = process.env.CLIENT_ID;
 const CLIENT_SECRET = process.env.CLIENT_SECRET;
 const PORT = process.env.PORT;
+const WEBSITE_URL = process.env.WEBSITE_URL;
 
 var options = null;
 var artistObject = {
@@ -18,6 +19,7 @@ var artistObject = {
 	artistPopularity: null,
 	artistAlbums: null,
 	artistTracks: null,
+	siteURL: WEBSITE_URL,
 	error: null
 }
 
@@ -29,6 +31,7 @@ const dummyObject = {
 	artistPopularity: null,
 	artistAlbums: null,
 	artistTracks: null,
+	siteURL: WEBSITE_URL,
 	error: null
 }
 
@@ -84,15 +87,14 @@ app.post('/search', function (req, res) {
 			//Get artistID to get top hit data.
 			var artistID = body.artists.items[0].id;
 
-			//Create object to eventually pass to front end
-			artistObject = {
-				artistName: body.artists.items[0].name,
-				artistFollowers: body.artists.items[0].followers.total,
-				artistImg: body.artists.items[0].images[0].url,
-				artistPopularity: body.artists.items[0].popularity,
-				artistAlbums: null,
-				artistTracks: null
-			}
+			//Modify object to eventually pass to front end
+			artistObject.artistName = body.artists.items[0].name;
+			artistObject.artistFollowers = body.artists.items[0].followers.total;
+			artistObject.artistImg = body.artists.items[0].images[0].url;
+			artistObject.artistPopularity = body.artists.items[0].popularity;
+			artistObject.artistAlbums = null;
+			artistObject.artistTracks = null;
+			artistObject.error = null;
 
 			//Ceate object to pass to Spotify, searching for artist data
 			var artistSearch = {
