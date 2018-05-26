@@ -37,28 +37,37 @@ app.get('/', function (req, res) {
 				refresh_token = body.refresh_token;
   
 			options = {
-				url: 'https://api.spotify.com/v1/me',
+				url: 'https://api.spotify.com/v1/search?q=',
 				headers: { 'Authorization': 'Bearer ' + access_token },
 				json: true
 			};
 			
 			res.render('index');
+		} else {
+			//TODO: display error that something went wrong... when it shouldn't have.
 		}
 	})	
 })
 
 app.post('/', function (req, res) {
-	res.render('index');
-
 	//Get inputted artist from text field
 	var artist = req.body.artist;
-	console.log(artist);
 
-	//convert artist string to artistFormatted, with all spaces replaced by a + sign.
 	var artistFormatted = convertArtist(artist);
-	console.log(artistFormatted);
 
-	//TODO: call method in auth.js to get info about the artist from Spotify API.
+	//append artistFormatted to the end of the search url.
+	options.url += artistFormatted;
+	//only want first search result
+	options.url += '&type=artist&offset=0&limit=1'
+
+	//Get artist info from Spotify database
+	request.get(options, function(error, response, body) {
+		if (!error && response.statusCode === 200) {
+			var artistID = body.artists.items[0].id;
+			
+			res.render('index');
+		}
+	})	
 })
 
 app.listen(port, function () {
