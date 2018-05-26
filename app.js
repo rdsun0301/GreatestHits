@@ -2,6 +2,7 @@ const express = require('express');
 const request = require('request');
 const bodyParser = require('body-parser');
 const app = express()
+const convertArtist = require('./lib/convertArtist');
 
 //Stored values in .env file
 require('dotenv').config();
@@ -10,6 +11,7 @@ const CLIENT_SECRET = process.env.CLIENT_SECRET;
 
 const port = 3000;
 
+var options = null;
 
 app.use(express.static('public'));
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -34,7 +36,7 @@ app.get('/', function (req, res) {
   			var access_token = body.access_token,
 				refresh_token = body.refresh_token;
   
-			var options = {
+			options = {
 				url: 'https://api.spotify.com/v1/me',
 				headers: { 'Authorization': 'Bearer ' + access_token },
 				json: true
@@ -52,7 +54,9 @@ app.post('/', function (req, res) {
 	var artist = req.body.artist;
 	console.log(artist);
 
-	//TODO: make and call a method that converts artist into artistFormatted
+	//convert artist string to artistFormatted, with all spaces replaced by a + sign.
+	var artistFormatted = convertArtist(artist);
+	console.log(artistFormatted);
 
 	//TODO: call method in auth.js to get info about the artist from Spotify API.
 })
