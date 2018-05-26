@@ -80,13 +80,13 @@ app.post('/', function (req, res) {
 				}
 			})
 
-			res.render('index');
+			res.render('artistPage');
 		} else {
 			//TODO: error, invalid user input
 		}
 	})	
 })
 
-app.listen(port, function () {
-	console.log(`GreatestHits listening on port ${port}`)
+app.listen(PORT, function () {
+	console.log(`GreatestHits listening on port ${PORT}`)
 })
