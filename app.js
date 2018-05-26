@@ -8,8 +8,7 @@ const convertArtist = require('./lib/convertArtist');
 require('dotenv').config();
 const CLIENT_ID = process.env.CLIENT_ID;
 const CLIENT_SECRET = process.env.CLIENT_SECRET;
-
-const port = 3000;
+const PORT = process.env.PORT;
 
 var options = null;
 
