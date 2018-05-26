@@ -14,6 +14,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
 <body class="light-grey content" style="max-width:1600px">
 
 <!-- Sidebar/menu -->
+<% if (artistName !== null) { %>
 <nav class="sidebar collapse white animate-left" style="z-index:3;width:300px;" id="mySidebar"><br>
 	<div class="container">
 		<a href="#" onclick="w3_close()" class="hide-large right jumbo padding hover-grey" title="close menu">
@@ -31,6 +32,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
 		<p class="text-grey">Popularity: <%= artistPopularity %></p>
 	</div>
 </nav>
+<% } %>
 
 <!-- Overlay effect when opening sidebar on small screens -->
 <div class="overlay hide-large animate-opacity" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
@@ -43,12 +45,10 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
 		<a href="#"><img src="/w3images/avatar_g2.jpg" style="width:65px;" class="circle right margin hide-large hover-opacity"></a>
 		<span class="button hide-large xxlarge hover-text-grey" onclick="w3_open()"><i class="fa fa-bars"></i></span>
 		<div class="container">
-			<h1><b>Greatest Hits</b></h1>
-			<div class="half">
-    			<button class="button black">Top Albums</button>
-      			<button class="button white">Top Tracks</button>
+			<div align="left">
+				<h1><b>Greatest Hits</b></h1>
 			</div>
-			<div class="half">
+			<div align="right">
 				<fieldset>
 					<form action="/search" method="post">
 						<input name="artist" type="text" class="ghost-input" placeholder="Enter an Artist" required>
@@ -56,9 +56,17 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
 					</form>
 				</fieldset>
 			</div>
+
+			<% if (artistName !== null) { %>
+			<div class="section bottombar padding-16">
+    			<button class="button black">Top Albums</button>
+      			<button class="button white">Top Tracks</button>
+			</div>
+			<% } %>
     	</div>
   	</header>
-  
+	
+	<% if (artistName !== null) { %>
   	<!-- First Photo Grid-->
   	<div class="row-padding">
     	<div class="third container margin-bottom">
@@ -108,6 +116,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
       		</div>
     	</div>
   	</div>
+	<% } %>
 
   	<!-- Footer -->
   	<footer class="container padding-32 dark-grey">
