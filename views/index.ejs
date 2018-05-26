@@ -38,16 +38,23 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
 <div class="overlay hide-large animate-opacity" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
 
 <!-- !PAGE CONTENT! -->
-<div class="main" style="margin-left:300px">
+<div class="main" style=
+	<% if (artistName === null) { %>
+	"margin-left:0px">
+	<% } else { %>
+	"margin-left:300px">
+	<% } %>
 
 	<!-- Header -->
 	<header id="greatesthits">
-		<a href="#"><img src="/w3images/avatar_g2.jpg" style="width:65px;" class="circle right margin hide-large hover-opacity"></a>
 		<span class="button hide-large xxlarge hover-text-grey" onclick="w3_open()"><i class="fa fa-bars"></i></span>
 		<div class="container">
 			<div align="left">
-				<h1><b>Greatest Hits</b></h1>
+				<h1><b>Greatest Hits</b>
+				</h1>
 			</div>
+
+			<% if (artistName !== null) { %>
 			<div align="right">
 				<fieldset>
 					<form action="/search" method="post">
@@ -56,8 +63,6 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
 					</form>
 				</fieldset>
 			</div>
-
-			<% if (artistName !== null) { %>
 			<div class="section bottombar padding-16">
     			<button class="button black">Top Albums</button>
       			<button class="button white">Top Tracks</button>
@@ -116,6 +121,16 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
       		</div>
     	</div>
   	</div>
+	<% } else { %>
+	<!-- Placeholder Body Content-->
+	<div align="center" class="bigspace">
+		<fieldset>
+			<form action="/search" method="post">
+				<input name="artist" type="text" class="ghost-input" placeholder="Enter an Artist" required>
+				<input type="submit" class="ghost-button" value="See Greatest Hits!">		  			
+			</form>
+		</fieldset>
+	</div>
 	<% } %>
 
   	<!-- Footer -->
