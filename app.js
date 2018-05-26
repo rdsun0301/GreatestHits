@@ -32,7 +32,6 @@ app.get('/', function (req, res) {
 	
 	request.post(authOptions, function(error, response, body) {
 		if (!error && response.statusCode === 200) {
-			console.log('Authorized!')
   			var access_token = body.access_token,
 				refresh_token = body.refresh_token;
   
@@ -44,7 +43,7 @@ app.get('/', function (req, res) {
 			
 			res.render('index');
 		} else {
-			//TODO: display error that something went wrong... when it shouldn't have.
+			//TODO: error, something weird happened that shouldn't have
 		}
 	})	
 })
@@ -64,8 +63,26 @@ app.post('/', function (req, res) {
 	request.get(options, function(error, response, body) {
 		if (!error && response.statusCode === 200) {
 			var artistID = body.artists.items[0].id;
+
+			var artistObject = {
+				url:'https://api.spotify.com/v1/artists/' + artistID + '/top-tracks?country=US',
+				headers: options.headers,
+				json: true
+			}
 			
+			request.get(artistObject, function(error, response, body) {
+				//How many hits are there?
+				var listLength = Object.keys(body.tracks).length;
+
+				//Get the top hits
+				for(let i = 0; i < listLength; i++) {
+					console.log(body.tracks[i].name);
+				}
+			})
+
 			res.render('index');
+		} else {
+			//TODO: error, invalid user input
 		}
 	})	
 })
