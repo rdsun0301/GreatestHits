@@ -80,7 +80,7 @@ app.post('/', function (req, res) {
 				}
 			})
 
-			res.render('artistPage');
+			res.render('index');
 		} else {
 			//TODO: error, invalid user input
 		}
