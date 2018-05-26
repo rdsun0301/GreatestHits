@@ -77,6 +77,7 @@ app.post('/', function (req, res) {
 				//Get the top hits
 				for(let i = 0; i < listLength; i++) {
 					console.log(body.tracks[i].name);
+					console.log(body.tracks[i].preview_url);
 				}
 			})
 
