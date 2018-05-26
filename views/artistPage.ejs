@@ -15,14 +15,14 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
 
 <!-- Sidebar/menu -->
 <nav class="sidebar collapse white animate-left" style="z-index:3;width:300px;" id="mySidebar"><br>
-  <div class="container">
-    <a href="#" onclick="w3_close()" class="hide-large right jumbo padding hover-grey" title="close menu">
-      <i class="fa fa-remove"></i>
-    </a>
-    <img src="/w3images/avatar_g2.jpg" style="width:45%;" class="round"><br><br>
-    <h4><b>PORTFOLIO</b></h4>
-    <p class="text-grey">Artist description here...</p>
-  </div>
+	<div class="container">
+		<a href="#" onclick="w3_close()" class="hide-large right jumbo padding hover-grey" title="close menu">
+			<i class="fa fa-remove"></i>
+		</a>
+		<img src="/w3images/avatar_g2.jpg" style="width:45%;" class="round"><br><br>
+		<h4><b>Artist Name Here...</b></h4>
+		<p class="text-grey">Artist description here...</p>
+	</div>
 </nav>
 
 <!-- Overlay effect when opening sidebar on small screens -->
@@ -31,96 +31,103 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
 <!-- !PAGE CONTENT! -->
 <div class="main" style="margin-left:300px">
 
-  <!-- Header -->
-  <header id="greatesthits">
-    <a href="#"><img src="/w3images/avatar_g2.jpg" style="width:65px;" class="circle right margin hide-large hover-opacity"></a>
-    <span class="button hide-large xxlarge hover-text-grey" onclick="w3_open()"><i class="fa fa-bars"></i></span>
-    <div class="container">
-    <h1><b>Greatest Hits</b></h1>
-    <div class="section bottombar padding-16">
-      <span class="margin-right">Filter:</span> 
-      <button class="button black">Top Tracks</button>
-      <button class="button white"><i class="fa fa-diamond margin-right"></i>Top Albums</button>
-    </div>
-    </div>
-  </header>
+	<!-- Header -->
+	<header id="greatesthits">
+		<a href="#"><img src="/w3images/avatar_g2.jpg" style="width:65px;" class="circle right margin hide-large hover-opacity"></a>
+		<span class="button hide-large xxlarge hover-text-grey" onclick="w3_open()"><i class="fa fa-bars"></i></span>
+		<div class="container">
+			<h1><b>Greatest Hits</b></h1>
+			<div class="section bottombar padding-16">
+    			<button class="button black">Top Albums</button>
+      			<button class="button white">Top Tracks</button>
+			</div>
+			<div class="search">
+				<fieldset>
+		  			<form action="/" method="post">
+						<input name="artist" type="text" class="ghost-input" placeholder="Enter an Artist" required>
+						<input type="submit" class="ghost-button" value="See Greatest Hits!">
+		  			</form>
+				</fieldset>
+	  		</div>
+    	</div>
+  	</header>
   
-  <!-- First Photo Grid-->
-  <div class="row-padding">
-    <div class="third container margin-bottom">
-      <img src="/w3images/mountains.jpg" alt="Norway" style="width:100%" class="hover-opacity">
-      <div class="container white">
-        <p><b>Lorem Ipsum</b></p>
-        <p>Praesent tincidunt sed tellus ut rutrum. Sed vitae justo condimentum, porta lectus vitae, ultricies congue gravida diam non fringilla.</p>
-      </div>
-    </div>
-    <div class="third container margin-bottom">
-      <img src="/w3images/lights.jpg" alt="Norway" style="width:100%" class="hover-opacity">
-      <div class="container white">
-        <p><b>Lorem Ipsum</b></p>
-        <p>Praesent tincidunt sed tellus ut rutrum. Sed vitae justo condimentum, porta lectus vitae, ultricies congue gravida diam non fringilla.</p>
-      </div>
-    </div>
-    <div class="third container">
-      <img src="/w3images/nature.jpg" alt="Norway" style="width:100%" class="hover-opacity">
-      <div class="container white">
-        <p><b>Lorem Ipsum</b></p>
-        <p>Praesent tincidunt sed tellus ut rutrum. Sed vitae justo condimentum, porta lectus vitae, ultricies congue gravida diam non fringilla.</p>
-      </div>
-    </div>
-  </div>
+  	<!-- First Photo Grid-->
+  	<div class="row-padding">
+    	<div class="third container margin-bottom">
+      		<img src="/w3images/mountains.jpg" alt="Norway" style="width:100%" class="hover-opacity">
+      		<div class="container white">
+        		<p><b>Album Name Here...</b></p>
+        		<p>Popularity: ##/100</p>
+      		</div>
+    	</div>
+    	<div class="third container margin-bottom">
+      		<img src="/w3images/lights.jpg" alt="Norway" style="width:100%" class="hover-opacity">
+      		<div class="container white">
+        		<p><b>Album Name Here...</b></p>
+        		<p>Popularity: ##/100</p>
+      		</div>
+    	</div>
+    	<div class="third container">
+      		<img src="/w3images/nature.jpg" alt="Norway" style="width:100%" class="hover-opacity">
+      		<div class="container white">
+        		<p><b>Album Name Here...</b></p>
+    			<p>Popularity: ##/100</p>
+  			</div>
+    	</div>
+	</div>
   
-  <!-- Second Photo Grid-->
-  <div class="row-padding">
-    <div class="third container margin-bottom">
-      <img src="/w3images/p1.jpg" alt="Norway" style="width:100%" class="hover-opacity">
-      <div class="container white">
-        <p><b>Lorem Ipsum</b></p>
-        <p>Praesent tincidunt sed tellus ut rutrum. Sed vitae justo condimentum, porta lectus vitae, ultricies congue gravida diam non fringilla.</p>
-      </div>
-    </div>
-    <div class="third container margin-bottom">
-      <img src="/w3images/p2.jpg" alt="Norway" style="width:100%" class="hover-opacity">
-      <div class="container white">
-        <p><b>Lorem Ipsum</b></p>
-        <p>Praesent tincidunt sed tellus ut rutrum. Sed vitae justo condimentum, porta lectus vitae, ultricies congue gravida diam non fringilla.</p>
-      </div>
-    </div>
-    <div class="third container">
-      <img src="/w3images/p3.jpg" alt="Norway" style="width:100%" class="hover-opacity">
-      <div class="container white">
-        <p><b>Lorem Ipsum</b></p>
-        <p>Praesent tincidunt sed tellus ut rutrum. Sed vitae justo condimentum, porta lectus vitae, ultricies congue gravida diam non fringilla.</p>
-      </div>
-    </div>
-  </div>
+  	<!-- Second Photo Grid-->
+  	<div class="row-padding">
+    	<div class="third container margin-bottom">
+      		<img src="/w3images/p1.jpg" alt="Norway" style="width:100%" class="hover-opacity">
+      		<div class="container white">
+        		<p><b>Album Name Here...</b></p>
+        		<p>Popularity: ##/100</p>
+      		</div>
+    	</div>
+    	<div class="third container margin-bottom">
+      		<img src="/w3images/p2.jpg" alt="Norway" style="width:100%" class="hover-opacity">
+      		<div class="container white">
+        		<p><b>Album Name Here...</b></p>
+        		<p>Popularity: ##/100</p>
+      		</div>
+    	</div>
+    	<div class="third container">
+      		<img src="/w3images/p3.jpg" alt="Norway" style="width:100%" class="hover-opacity">
+      		<div class="container white">
+        		<p><b>Album Name Here...</b></p>
+        		<p>Popularity: ##/100</p>
+      		</div>
+    	</div>
+  	</div>
 
-  <!-- Footer -->
-  <footer class="container padding-32 dark-grey">
-  <div class="row-padding">
-    <div class="half">
-      <h3>Created by Richard Sun</h3>
-      <p>Undergraduate student at the University of Southern California. Studying Computer Science and Business Administration.</p>
-    </div>
-  
-    <div class="half">
-      <h3>Related Links</h3>
-      <ul class="ul hoverable">
-        <li class="padding-16">
-          <img src="/assets/images/github.png" class="left margin-right" style="width:50px">
-          <span class="large"><a href="https://github.com/rdsun0301/GreatestHits" title="GitHubRepository" target="_blank" class="hover-opacity">GitHub Repository</a></span><br>
-        </li>
-        <li class="padding-16">
-          <img src="/assets/images/linkedin.jpg" class="left margin-right" style="width:50px">
-          <span class="large"><a href="https://www.linkedin.com/in/rdsun0301/" title="LinkedIn" target="_blank" class="hover-opacity">Richard's LinkedIn</a></span><br>
-        </li> 
-      </ul>
-    </div>
+  	<!-- Footer -->
+  	<footer class="container padding-32 dark-grey">
+		<div class="row-padding">
+			<div class="half">
+				<h3>Created by Richard Sun</h3>
+				<p>Undergraduate student at the University of Southern California. Studying Computer Science and Business Administration.</p>
+			</div>
+	
+			<div class="half">
+				<h3>Related Links</h3>
+				<ul class="ul hoverable">
+					<li class="padding-16">
+						<img src="/assets/images/github.png" class="left margin-right" style="width:50px">
+						<span class="large"><a href="https://github.com/rdsun0301/GreatestHits" title="GitHubRepository" target="_blank" class="hover-opacity">GitHub Repository</a></span><br>
+					</li>
+					<li class="padding-16">
+						<img src="/assets/images/linkedin.jpg" class="left margin-right" style="width:50px">
+						<span class="large"><a href="https://www.linkedin.com/in/rdsun0301/" title="LinkedIn" target="_blank" class="hover-opacity">Richard's LinkedIn</a></span><br>
+					</li> 
+				</ul>
+			</div>
 
-  </div>
-  </footer>
+		</div>
+  	</footer>
   
-  <div class="black center padding-24">Powered by <a href="https://www.w3schools.com/w3css/default.asp" title="W3.CSS" target="_blank" class="hover-opacity">w3.css</a></div>
+  	<div class="black center padding-24">Powered by <a href="https://www.w3schools.com/w3css/default.asp" title="W3.CSS" target="_blank" class="hover-opacity">w3.css</a></div>
 
 <!-- End page content -->
 </div>
