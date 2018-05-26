@@ -19,9 +19,16 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
 		<a href="#" onclick="w3_close()" class="hide-large right jumbo padding hover-grey" title="close menu">
 			<i class="fa fa-remove"></i>
 		</a>
-		<img src="/w3images/avatar_g2.jpg" style="width:45%;" class="round"><br><br>
-		<h4><b>Artist Name Here...</b></h4>
-		<p class="text-grey">Artist description here...</p>
+		<img src=<%= artistImg %> style="width:100%;" class="round"><br><br>
+		<h4><b>
+			<% if (artistName !== null) { %>
+				<%= artistName %>
+			<% } else { %>
+				Artist Name Here...
+			<% } %>
+		</b></h4>
+		<p class="text-grey">Followers: <%= artistFollowers %></p>
+		<p class="text-grey">Popularity: <%= artistPopularity %></p>
 	</div>
 </nav>
 
@@ -43,7 +50,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
 			</div>
 			<div class="half">
 				<fieldset>
-					<form action="/" method="post">
+					<form action="/search" method="post">
 						<input name="artist" type="text" class="ghost-input" placeholder="Enter an Artist" required>
 						<input type="submit" class="ghost-button" value="See Greatest Hits!">		  			
 					</form>
@@ -112,7 +119,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
 	
 			<div class="half">
 				<h3><a href="https://github.com/rdsun0301/GreatestHits" title="GitHubRepository" target="_blank" class="hover-opacity">GitHub Repository</a></h3>
-				<p>All source code publicly provided.</p>
+				<p>Greatest Hits' source code is publicly available on GitHub.</p>
 			</div>
 		</div>
   	</footer>

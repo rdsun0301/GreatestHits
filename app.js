@@ -11,6 +11,15 @@ const CLIENT_SECRET = process.env.CLIENT_SECRET;
 const PORT = process.env.PORT;
 
 var options = null;
+var artistObject = {
+	artistName: null,
+	artistFollowers: null,
+	artistImg: null,
+	artistPopularity: null,
+	artistAlbums: null,
+	artistTracks: null,
+	error: null
+}
 
 app.use(express.static('public'));
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -40,14 +49,14 @@ app.get('/', function (req, res) {
 				json: true
 			};
 			
-			res.render('index');
+			res.render('index', artistObject);
 		} else {
 			//TODO: error, something weird happened that shouldn't have
 		}
 	})	
 })
 
-app.post('/', function (req, res) {
+app.post('/search', function (req, res) {
 	//Get inputted artist from text field
 	var artist = req.body.artist;
 
@@ -61,15 +70,27 @@ app.post('/', function (req, res) {
 	//Get artist info from Spotify database
 	request.get(options, function(error, response, body) {
 		if (!error && response.statusCode === 200) {
+			//Get artistID to get top hit data.
 			var artistID = body.artists.items[0].id;
 
-			var artistObject = {
+			//Create object to eventually pass to front end
+			artistObject = {
+				artistName: body.artists.items[0].name,
+				artistFollowers: body.artists.items[0].followers.total,
+				artistImg: body.artists.items[0].images[0].url,
+				artistPopularity: body.artists.items[0].popularity,
+				artistAlbums: null,
+				artistTracks: null
+			}
+
+			//Ceate object to pass to Spotify, searching for artist data
+			var artistSearch = {
 				url:'https://api.spotify.com/v1/artists/' + artistID + '/top-tracks?country=US',
 				headers: options.headers,
 				json: true
 			}
 			
-			request.get(artistObject, function(error, response, body) {
+			request.get(artistSearch, function(error, response, body) {
 				//How many hits are there?
 				var listLength = Object.keys(body.tracks).length;
 
@@ -77,10 +98,11 @@ app.post('/', function (req, res) {
 				for(let i = 0; i < listLength; i++) {
 					console.log(body.tracks[i].name);
 					console.log(body.tracks[i].preview_url);
+					console.log(body.tracks[i].popularity);
 				}
 			})
 
-			res.render('index');
+			res.render('index', artistObject);
 		} else {
 			//TODO: error, invalid user input
 		}
