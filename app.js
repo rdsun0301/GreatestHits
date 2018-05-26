@@ -21,6 +21,17 @@ var artistObject = {
 	error: null
 }
 
+//Pass this object to get back to main page.
+const dummyObject = {
+	artistName: null,
+	artistFollowers: null,
+	artistImg: null,
+	artistPopularity: null,
+	artistAlbums: null,
+	artistTracks: null,
+	error: null
+}
+
 app.use(express.static('public'));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.set('view engine', 'ejs')
@@ -49,7 +60,7 @@ app.get('/', function (req, res) {
 				json: true
 			};
 			
-			res.render('index', artistObject);
+			res.render('index', dummyObject);
 		} else {
 			//TODO: error, something weird happened that shouldn't have
 		}
