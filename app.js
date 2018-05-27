@@ -73,14 +73,15 @@ app.get('/', function (req, res) {
 app.post('/search', function (req, res) {
 	//Get inputted artist from text field
 	var artist = req.body.artist;
-
 	var artistFormatted = convertArtist(artist);
 
+	//reset search url
+	options.url = 'https://api.spotify.com/v1/search?q='
 	//append artistFormatted to the end of the search url.
 	options.url += artistFormatted;
 	//only want first search result
 	options.url += '&type=artist&offset=0&limit=1'
-
+	
 	//Get artist info from Spotify database
 	request.get(options, function(error, response, body) {
 		if (!error && response.statusCode === 200) {
@@ -109,9 +110,9 @@ app.post('/search', function (req, res) {
 
 				//Get the top hits
 				for(let i = 0; i < listLength; i++) {
-					console.log(body.tracks[i].name);
+					/**console.log(body.tracks[i].name);
 					console.log(body.tracks[i].preview_url);
-					console.log(body.tracks[i].popularity);
+					console.log(body.tracks[i].popularity);**/
 				}
 			})
 
