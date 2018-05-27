@@ -134,13 +134,13 @@ app.post('/search', function (req, res) {
 				headers: options.headers,
 				json: true
 			}
-			console.log(artistID);
+			
 			//Get top albums
 			artistObject.artistAlbums = [];
 			request.get(artistSearch, function(error, response, body) {
 				//How many albums are there?
 				var listLength = Object.keys(body.items).length;
-
+				
 				for(let i = 0; i < listLength; i++) {
 					//Get album name, art, link, release date.
 					var album = {
@@ -149,12 +149,13 @@ app.post('/search', function (req, res) {
 						url: body.items[i].external_urls.spotify,
 						release: body.items[i].release_date
 					}
-					console.log(i + album.name);
+					
 					artistObject.artistAlbums.push(album);
 				}
 			})
 
 			//Get top tracks
+			artistObject.artistTracks = [];
 			artistSearch.url = 'https://api.spotify.com/v1/artists/' + artistID + '/top-tracks?country=US';
 			request.get(artistSearch, function(error, response, body) {
 				//How many tracks are there?
@@ -162,14 +163,20 @@ app.post('/search', function (req, res) {
 
 				for(let i = 0; i < listLength; i++) {
 					//TODO: get track names, preview urls, popularities.
-
-					/**body.tracks[i].name
-					body.tracks[i].preview_url
-					body.tracks[i].popularity**/
+					var track = {
+						name: body.tracks[i].name,
+						url: body.tracks[i].preview_url,
+						popularity: body.tracks[i].popularity
+					}
+					
+					artistObject.artistTracks.push(track);
 				}
 			})
-
-			res.render('index', artistObject);
+			
+			//Make sure this happens after the data is retrieved.
+			setTimeout(function() {
+				res.render('index', artistObject);
+			}, 1000);
 		} else {
 			//TODO: error, invalid user input
 		}
