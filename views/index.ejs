@@ -17,19 +17,10 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
 <% if (artistName !== null) { %>
 <nav class="sidebar collapse white animate-left" style="z-index:3;width:300px;" id="mySidebar"><br>
 	<div class="container">
-		<a href="#" onclick="w3_close()" class="hide-large right jumbo padding hover-grey" title="close menu">
-			<i class="fa fa-remove"></i>
-		</a>
 		<img src=<%= artistImg %> style="width:100%;" class="round"><br><br>
-		<h4><b>
-			<% if (artistName !== null) { %>
-				<%= artistName %>
-			<% } else { %>
-				Artist Name Here...
-			<% } %>
-		</b></h4>
+		<h4><b><%= artistName %></b></h4>
 		<p class="text-grey">Followers: <%= artistFollowers %></p>
-		<p class="text-grey">Popularity: <%= artistPopularity %></p>
+		<p class="text-grey">Popularity: <%= artistPopularity %>/100</p>
 	</div>
 </nav>
 <% } %>
@@ -39,23 +30,24 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
 
 <!-- !PAGE CONTENT! -->
 <div class="main" style=
-	<% if (artistName === null) { %>
-	"margin-left:0px">
-	<% } else { %>
+	<% if (artistName !== null) { %>
 	"margin-left:300px">
+	<% } else { %>
+	"margin-left:0px">
 	<% } %>
 
 	<!-- Header -->
 	<header id="greatesthits">
-		<span class="button hide-large xxlarge hover-text-grey" onclick="w3_open()"><i class="fa fa-bars"></i></span>
+		<% if (artistName !== null) { %>
 		<div class="container">
 			<div align="left">
-				<h1><b>Greatest Hits</b>
-				</h1>
+				<a style="text-decoration:none" href=<%= siteURL %>><h1><b>Greatest Hits</b></h1></a>
 			</div>
-
-			<% if (artistName !== null) { %>
-			<div align="right">
+			<div class="half section padding-16">
+    			<button class="button black">Top Albums</button>
+      			<button class="button white">Top Tracks</button>
+			</div>
+			<div class="half section padding-16" align="right">
 				<fieldset>
 					<form action="/search" method="post">
 						<input name="artist" type="text" class="ghost-input" placeholder="Enter an Artist" required>
@@ -63,12 +55,12 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
 					</form>
 				</fieldset>
 			</div>
-			<div class="section bottombar padding-16">
-    			<button class="button black">Top Albums</button>
-      			<button class="button white">Top Tracks</button>
-			</div>
-			<% } %>
-    	</div>
+		</div>	
+	<% } else { %>
+		<div class="main-title" align="center">
+			<b>Greatest Hits</b>
+		</div>
+	<% } %>
   	</header>
 	
 	<% if (artistName !== null) { %>
@@ -124,12 +116,14 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
 	<% } else { %>
 	<!-- Placeholder Body Content-->
 	<div align="center" class="bigspace">
+		<p>Enter an artist's name to see their hits!</p>
 		<fieldset>
 			<form action="/search" method="post">
 				<input name="artist" type="text" class="ghost-input" placeholder="Enter an Artist" required>
 				<input type="submit" class="ghost-button" value="See Greatest Hits!">		  			
 			</form>
 		</fieldset>
+		<p>Powered by Spotify</p>
 	</div>
 	<% } %>
 
