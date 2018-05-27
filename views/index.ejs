@@ -16,7 +16,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
 <!-- Sidebar/menu -->
 <% if (artistName !== null) { %>
 <nav class="sidebar collapse white animate-left" style="z-index:3;width:300px;" id="mySidebar"><br>
-	<div class="container">
+	<div class="container" align="center">
 		<img src=<%= artistImg %> style="width:100%;" class="round"><br><br>
 		<h4><b><%= artistName %></b></h4>
 		<p class="text-grey">Followers: <%= artistFollowers %></p>
@@ -40,7 +40,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
 	<header id="greatesthits">
 		<% if (artistName !== null) { %>
 		<div class="container">
-			<div align="left">
+			<div align="center">
 				<a style="text-decoration:none" href=<%= siteURL %>><h1><b>Greatest Hits</b></h1></a>
 			</div>
 			<div class="half section padding-16">
@@ -64,55 +64,24 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
   	</header>
 	
 	<% if (artistName !== null) { %>
-  	<!-- First Photo Grid-->
+	<% var numRows = (artistAlbums.length+2)/3; %>
+	<% for (let i=0; i < numRows; i++) { %>
+  	<!-- Row of 3 photos-->
   	<div class="row-padding">
+		<% for (let j=0; (j < 3) && (i*3+j < artistAlbums.length); j++) { %>
+		<a style="text-decoration:none" href=<%= artistAlbums[i*3+j].url %>>
     	<div class="third container margin-bottom">
-      		<img src="/w3images/mountains.jpg" alt="albumArt" style="width:100%" class="hover-opacity">
-      		<div class="container white">
-        		<p><b>Album Name Here...</b></p>
-        		<p>Popularity: ##/100</p>
-      		</div>
-    	</div>
-    	<div class="third container margin-bottom">
-      		<img src="/w3images/lights.jpg" alt="albumArt" style="width:100%" class="hover-opacity">
-      		<div class="container white">
-        		<p><b>Album Name Here...</b></p>
-        		<p>Popularity: ##/100</p>
-      		</div>
-    	</div>
-    	<div class="third container">
-      		<img src="/w3images/nature.jpg" alt="albumArt" style="width:100%" class="hover-opacity">
-      		<div class="container white">
-        		<p><b>Album Name Here...</b></p>
-    			<p>Popularity: ##/100</p>
-  			</div>
-    	</div>
+			<img src=<%= artistAlbums[i*3+j].img %> alt="albumArt" style="width:100%" class="hover-opacity">
+			<div class="container white">
+        		<p><b><%= artistAlbums[i*3+j].name %></b></p></a>
+        		<p>Release Date: <%= artistAlbums[i*3+j].release %></p>
+			</div>
+		</div>
+		</a>
+		<% } %>
 	</div>
-  
-  	<!-- Second Photo Grid-->
-  	<div class="row-padding">
-    	<div class="third container margin-bottom">
-      		<img src="/w3images/p1.jpg" alt="albumArt" style="width:100%" class="hover-opacity">
-      		<div class="container white">
-        		<p><b>Album Name Here...</b></p>
-        		<p>Popularity: ##/100</p>
-      		</div>
-    	</div>
-    	<div class="third container margin-bottom">
-      		<img src="/w3images/p2.jpg" alt="albumArt" style="width:100%" class="hover-opacity">
-      		<div class="container white">
-        		<p><b>Album Name Here...</b></p>
-        		<p>Popularity: ##/100</p>
-      		</div>
-    	</div>
-    	<div class="third container">
-      		<img src="/w3images/p3.jpg" alt="albumArt" style="width:100%" class="hover-opacity">
-      		<div class="container white">
-        		<p><b>Album Name Here...</b></p>
-        		<p>Popularity: ##/100</p>
-      		</div>
-    	</div>
-  	</div>
+	<% } %>
+	  
 	<% } else { %>
 	<!-- Placeholder Body Content-->
 	<div align="center" class="bigspace">
