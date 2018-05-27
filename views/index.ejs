@@ -4,7 +4,6 @@
 <html>
 <title>Greatest Hits</title>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" type="text/css" href="/css/style.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -24,9 +23,6 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
 	</div>
 </nav>
 <% } %>
-
-<!-- Overlay effect when opening sidebar on small screens -->
-<div class="overlay hide-large animate-opacity" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
 
 <!-- !PAGE CONTENT! -->
 <div class="main" style=
@@ -65,25 +61,28 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
 	
 	<% if (artistName !== null) { %>
 	<% var numRows = (artistAlbums.length+2)/3; %>
+	<div class="albums">
 	<% for (let i=0; i < numRows; i++) { %>
-  	<!-- Row of 3 photos-->
+  	<!-- Row of 3 photos -->
   	<div class="row-padding">
 		<% for (let j=0; (j < 3) && (i*3+j < artistAlbums.length); j++) { %>
 		<a style="text-decoration:none" href=<%= artistAlbums[i*3+j].url %>>
+		<div class="frame<%= i*3+j %>">
     	<div class="third container margin-bottom">
 			<img src=<%= artistAlbums[i*3+j].img %> alt="albumArt" style="width:100%" class="hover-opacity">
 			<div class="container white">
-        		<p><b><%= artistAlbums[i*3+j].name %></b></p></a>
+        		<p><b><%= artistAlbums[i*3+j].name %></b></p>
         		<p>Release Date: <%= artistAlbums[i*3+j].release %></p>
 			</div>
+		</div>
 		</div>
 		</a>
 		<% } %>
 	</div>
 	<% } %>
-	  
+	</div>
 	<% } else { %>
-	<!-- Placeholder Body Content-->
+	<!-- Main Page Content -->
 	<div align="center" class="bigspace">
 		<p>Enter an artist's name to see their hits!</p>
 		<fieldset>
@@ -114,24 +113,14 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
 	<div class="black end-pad">
 		<h6 class="half" align="center">Created by Richard Sun</h6>
 		<a href="https://www.linkedin.com/in/rdsun0301/" title="LinkedIn" target="_blank" class="half hover-opacity" align="center">Richard's LinkedIn
-		<img src=/assets/images/linkedin.png style="width:50px"></a>
+		<img src="/assets/images/linkedin.png" style="width:50px"></a>
 	</div>
 
 <!-- End page content -->
 </div>
 
-<script>
-// Script to open and close sidebar
-function w3_open() {
-    document.getElementById("mySidebar").style.display = "block";
-    document.getElementById("myOverlay").style.display = "block";
-}
- 
-function w3_close() {
-    document.getElementById("mySidebar").style.display = "none";
-    document.getElementById("myOverlay").style.display = "none";
-}
-</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="/js/albumFadeIn.js"></script>
 
 </body>
 </html>

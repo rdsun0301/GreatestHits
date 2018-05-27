@@ -176,7 +176,7 @@ app.post('/search', function (req, res) {
 			//Make sure this happens after the data is retrieved.
 			setTimeout(function() {
 				res.render('index', artistObject);
-			}, 1000);
+			}, 500);
 		} else {
 			//TODO: error, invalid user input
 		}
