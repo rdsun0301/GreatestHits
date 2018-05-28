@@ -12,28 +12,23 @@ const PORT = process.env.PORT;
 const WEBSITE_URL = process.env.WEBSITE_URL;
 
 var options = null;
-var artistObject = {
-	artistName: null,
-	artistFollowers: null,
-	artistImg: null,
-	artistPopularity: null,
-	artistAlbums: null,
-	artistTracks: null,
-	siteURL: WEBSITE_URL,
-	error: null
+
+function ArtistObject() {
+	this.artistName = null;
+	this.artistName = null;
+	this.artistFollowers = null;
+	this.artistImg = null;
+	this.artistPopularity = null;
+	this.artistAlbums = null;
+	this.artistTracks = null;
+	this.siteURL = WEBSITE_URL;
+	this.passedError = null;
 }
 
+var artistObject = new ArtistObject();
+
 //Pass this object to get back to main page.
-const dummyObject = {
-	artistName: null,
-	artistFollowers: null,
-	artistImg: null,
-	artistPopularity: null,
-	artistAlbums: [],
-	artistTracks: [],
-	siteURL: WEBSITE_URL,
-	error: null
-}
+const dummyObject = new ArtistObject();
 
 app.use(express.static('public'));
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -115,18 +110,28 @@ app.post('/search', function (req, res) {
 	
 	//Get artist info from Spotify database
 	request.get(options, function(error, response, body) {
-		if (!error && response.statusCode === 200) {
+		if (error || response.statusCode !== 200) {
+			//TODO: something weird happened
+		} else if(body.artists.total === 0) {
+			//No search results found
+			artistObject.passedError = '0 search results found.';
+		} else { //Search successful
+			//Reset artistObject
+			artistObject = new ArtistObject();
+
 			//Get artistID to get top hit data.
 			var artistID = body.artists.items[0].id;
 
 			//Modify object to eventually pass to front end
 			artistObject.artistName = body.artists.items[0].name;
 			artistObject.artistFollowers = body.artists.items[0].followers.total;
-			artistObject.artistImg = body.artists.items[0].images[0].url;
+			if (Object.keys(body.artists.items[0].images).length !== 0) {
+				artistObject.artistImg = body.artists.items[0].images[0].url;
+			}
 			artistObject.artistPopularity = body.artists.items[0].popularity;
 			artistObject.artistAlbums = null;
 			artistObject.artistTracks = null;
-			artistObject.error = null;
+			artistObject.passedError = null;
 
 			//Ceate object to pass to Spotify, searching for artist data
 			var artistSearch = {
@@ -134,7 +139,7 @@ app.post('/search', function (req, res) {
 				headers: options.headers,
 				json: true
 			}
-			
+
 			//Get top albums
 			artistObject.artistAlbums = [];
 			request.get(artistSearch, function(error, response, body) {
@@ -168,18 +173,16 @@ app.post('/search', function (req, res) {
 						url: body.tracks[i].preview_url,
 						popularity: body.tracks[i].popularity
 					}
-					
+				
 					artistObject.artistTracks.push(track);
 				}
 			})
-			
-			//Make sure this happens after the data is retrieved.
-			setTimeout(function() {
-				res.render('index', artistObject);
-			}, 500);
-		} else {
-			//TODO: error, invalid user input
 		}
+
+		//Make sure this happens after the data is retrieved.
+		setTimeout(function() {
+			res.render('index', artistObject);
+		}, 300);
 	})	
 })
 
