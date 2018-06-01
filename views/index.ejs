@@ -60,8 +60,8 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
 	<% } %>
   	</header>
 	
-	  <!--- Display Albums -->
 	<% if (artistName !== null) { %>
+	<!--- Display Albums -->
 	<% var numRows = (artistAlbums.length+2)/3; %>
 	<div class="albums">
 	<% for (let i=0; i < numRows; i++) { %>
@@ -83,6 +83,28 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
 	</div>
 	<% } %>
 	</div>
+
+	<!-- Display Top Tracks -->
+	<div class="toptracks">
+		<div class="row-padding">
+			<div class="third container" align="center"><h3>Track Name</h3></div>
+			<div class="third container" align="center"><h3>Track Popularity (/100)</h3></div>
+			<div class="third container" align="center"><h3>Preview</h3></div>
+			</div>
+		<% for (let i=0; i < artistTracks.length; i++) { %>
+		<div class="row-padding white margin-left margin-right margin-top margin-bottom">
+			<div class="third container" align="center"><%= artistTracks[i].name %></div>
+			<div class="third container" align="center"><%= artistTracks[i].popularity %></div>
+			<div class="third container" align="center">
+				<audio controls>
+				<source src=<%= artistTracks[i].url %> type="audio/mpeg">
+				Error displaying audio preview.
+				</audio>
+			</div>
+		</div>
+		<% } %>
+	</div>
+
 	<% } else { %>
 	<!-- Main Page Content -->
 	<div align="center" class="bigspace">
@@ -96,8 +118,6 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
 		<p>Powered by Spotify</p>
 	</div>
 	<% } %>
-
-	<!-- Display Top Tracks -->
 
   	<!-- Footer -->
   	<footer class="container padding-32 dark-grey">
