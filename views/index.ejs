@@ -41,8 +41,8 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
 			</div>
 			<div class="red" align="right"><%= passedError %></div>
 			<div class="half section padding-16">
-    			<button class="button black">Top Albums</button>
-      			<button class="button white">Top Tracks</button>
+    			<button class="button black" onClick="albumFadeIn()">Top Albums</button>
+      			<button class="button white" onclick="tracksFadeIn()">Top Tracks</button>
 			</div>
 			<div class="half section padding-16" align="right">
 				<fieldset>
@@ -145,6 +145,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="/js/albumFadeIn.js"></script>
+<script src="/js/tracksFadeIn.js"></script>
 
 </body>
 </html>

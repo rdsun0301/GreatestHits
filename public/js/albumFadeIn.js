@@ -1,4 +1,6 @@
 function albumFadeIn() {
+	$('.toptracks').hide();
+	$('.albums').show();
 	$("div[class^='frame']").hide();
 
 	var numFrames = $("div[class^='frame']").length;
