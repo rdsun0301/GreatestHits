@@ -86,13 +86,13 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
 
 	<!-- Display Top Tracks -->
 	<div class="toptracks">
-		<div class="row-padding">
+		<div class="row-padding track-headers">
 			<div class="third container" align="center"><h3>Track Name</h3></div>
 			<div class="third container" align="center"><h3>Track Popularity (/100)</h3></div>
 			<div class="third container" align="center"><h3>Preview</h3></div>
 			</div>
 		<% for (let i=0; i < artistTracks.length; i++) { %>
-		<div class="row-padding white margin-left margin-right margin-top margin-bottom">
+		<div class="track<%= i %> row-padding white margin-left margin-right margin-top margin-bottom">
 			<div class="third container" align="center"><%= artistTracks[i].name %></div>
 			<div class="third container" align="center"><%= artistTracks[i].popularity %></div>
 			<div class="third container" align="center">
@@ -120,7 +120,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
 	<% } %>
 
   	<!-- Footer -->
-  	<footer class="container padding-32 dark-grey">
+  	<footer class="bottom-content container padding-32 dark-grey">
 		<div class="row-padding">
 			<div class="half" align="center">
 				<h3>Powered by Spotify</h3>
@@ -134,7 +134,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
 		</div>
   	</footer>
   
-	<div class="black end-pad">
+	<div class="bottom-content black end-pad">
 		<h6 class="half" align="center">Created by Richard Sun</h6>
 		<a href="https://www.linkedin.com/in/rdsun0301/" title="LinkedIn" target="_blank" class="half hover-opacity" align="center">Richard's LinkedIn
 		<img src="/assets/images/linkedin.png" style="width:50px"></a>
